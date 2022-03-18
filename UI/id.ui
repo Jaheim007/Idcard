@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1230</width>
+    <width>1228</width>
     <height>855</height>
    </rect>
   </property>
@@ -20,7 +20,7 @@
       <x>0</x>
       <y>0</y>
       <width>1231</width>
-      <height>881</height>
+      <height>861</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -61,6 +61,12 @@
         <height>581</height>
        </rect>
       </property>
+      <property name="autoScroll">
+       <bool>true</bool>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>false</bool>
+      </property>
       <column>
        <property name="text">
         <string>Prenom</string>
@@ -79,6 +85,11 @@
       <column>
        <property name="text">
         <string>Date de naissance</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>Email</string>
        </property>
       </column>
       <column>
@@ -186,12 +197,12 @@ background-color: rgb(50, 121, 234);
        <rect>
         <x>10</x>
         <y>10</y>
-        <width>61</width>
+        <width>131</width>
         <height>51</height>
        </rect>
       </property>
       <property name="text">
-       <string/>
+       <string>Back</string>
       </property>
       <property name="icon">
        <iconset resource="../resources.qrc">
@@ -205,6 +216,40 @@ background-color: rgb(50, 121, 234);
       </property>
       <property name="default">
        <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="take_screen">
+      <property name="geometry">
+       <rect>
+        <x>730</x>
+        <y>760</y>
+        <width>241</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QPushButton{
+font: 12pt &quot;MS Shell Dlg 2&quot;;
+color:rgb(50, 121, 234);
+}
+
+QPushButton::hover{
+font: 12pt &quot;MS Shell Dlg 2&quot;;
+color: rgb(255, 255, 255);
+background-color: rgb(50, 121, 234);
+}</string>
+      </property>
+      <property name="text">
+       <string>prendre une capture d'écran</string>
+      </property>
+      <property name="autoDefault">
+       <bool>true</bool>
+      </property>
+      <property name="default">
+       <bool>true</bool>
       </property>
       <property name="flat">
        <bool>false</bool>
@@ -262,14 +307,14 @@ background-color: rgb(50, 121, 234);
         <string notr="true">background-color: rgb(85, 170, 255);</string>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Profile img&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:22pt;&quot;&gt;Profile img&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
       <widget class="QLabel" name="prenom_label">
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>40</y>
+         <y>20</y>
          <width>121</width>
          <height>31</height>
         </rect>
@@ -285,7 +330,7 @@ background-color: rgb(50, 121, 234);
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>100</y>
+         <y>70</y>
          <width>71</width>
          <height>31</height>
         </rect>
@@ -301,7 +346,7 @@ background-color: rgb(50, 121, 234);
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>160</y>
+         <y>130</y>
          <width>81</width>
          <height>31</height>
         </rect>
@@ -317,7 +362,7 @@ background-color: rgb(50, 121, 234);
        <property name="geometry">
         <rect>
          <x>20</x>
-         <y>220</y>
+         <y>180</y>
          <width>201</width>
          <height>31</height>
         </rect>
@@ -393,6 +438,22 @@ background-color: rgb(50, 121, 234);
         <string/>
        </property>
       </widget>
+      <widget class="QLabel" name="date_de_label_2">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>240</y>
+         <width>61</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+       </property>
+       <property name="text">
+        <string>Email:</string>
+       </property>
+      </widget>
      </widget>
      <widget class="QPushButton" name="capture">
       <property name="geometry">
@@ -417,6 +478,35 @@ background-color: rgb(50, 121, 234);
       </property>
       <property name="text">
        <string>Capture d'ecran</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="back_btn_2">
+      <property name="geometry">
+       <rect>
+        <x>30</x>
+        <y>20</y>
+        <width>131</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Back</string>
+      </property>
+      <property name="icon">
+       <iconset resource="../resources.qrc">
+        <normaloff>:/img/Static/left_32px.png</normaloff>:/img/Static/left_32px.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>100</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="default">
+       <bool>false</bool>
+      </property>
+      <property name="flat">
+       <bool>false</bool>
       </property>
      </widget>
     </widget>
@@ -449,7 +539,7 @@ background-color: rgb(50, 121, 234);
         <x>320</x>
         <y>20</y>
         <width>611</width>
-        <height>821</height>
+        <height>831</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -482,8 +572,8 @@ text-decoration: underline;
       <widget class="QLabel" name="label_3">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>260</y>
+         <x>40</x>
+         <y>230</y>
          <width>91</width>
          <height>71</height>
         </rect>
@@ -498,10 +588,10 @@ text-decoration: underline;
       <widget class="QLabel" name="label_4">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>360</y>
+         <x>40</x>
+         <y>340</y>
          <width>91</width>
-         <height>71</height>
+         <height>41</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -514,9 +604,9 @@ text-decoration: underline;
       <widget class="QLabel" name="label_5">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>470</y>
-         <width>281</width>
+         <x>40</x>
+         <y>430</y>
+         <width>81</width>
          <height>51</height>
         </rect>
        </property>
@@ -530,8 +620,8 @@ text-decoration: underline;
       <widget class="QLabel" name="label_6">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>560</y>
+         <x>40</x>
+         <y>510</y>
          <width>281</width>
          <height>71</height>
         </rect>
@@ -547,8 +637,8 @@ text-decoration: underline;
       <widget class="QLineEdit" name="prenom_line">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>320</y>
+         <x>40</x>
+         <y>290</y>
          <width>511</width>
          <height>41</height>
         </rect>
@@ -557,8 +647,8 @@ text-decoration: underline;
       <widget class="QLineEdit" name="nom_line">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>420</y>
+         <x>40</x>
+         <y>380</y>
          <width>511</width>
          <height>41</height>
         </rect>
@@ -567,8 +657,8 @@ text-decoration: underline;
       <widget class="QPushButton" name="register_btn">
        <property name="geometry">
         <rect>
-         <x>210</x>
-         <y>760</y>
+         <x>200</x>
+         <y>770</y>
          <width>171</width>
          <height>51</height>
         </rect>
@@ -601,8 +691,8 @@ background-color: rgb(50, 121, 234);
       <widget class="QComboBox" name="comboBox">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>520</y>
+         <x>40</x>
+         <y>480</y>
          <width>511</width>
          <height>41</height>
         </rect>
@@ -630,8 +720,8 @@ background-color: rgb(50, 121, 234);
       <widget class="QDateEdit" name="dateEdit_combo">
        <property name="geometry">
         <rect>
-         <x>50</x>
-         <y>630</y>
+         <x>40</x>
+         <y>570</y>
          <width>511</width>
          <height>41</height>
         </rect>
@@ -640,8 +730,8 @@ background-color: rgb(50, 121, 234);
       <widget class="QPushButton" name="add_photo_btn">
        <property name="geometry">
         <rect>
-         <x>230</x>
-         <y>150</y>
+         <x>280</x>
+         <y>130</y>
          <width>171</width>
          <height>51</height>
         </rect>
@@ -666,7 +756,7 @@ background-color: rgb(50, 121, 234);
        <property name="geometry">
         <rect>
          <x>60</x>
-         <y>110</y>
+         <y>80</y>
          <width>151</width>
          <height>141</height>
         </rect>
@@ -684,8 +774,8 @@ background-color: rgb(50, 121, 234);
       <widget class="QLabel" name="error">
        <property name="geometry">
         <rect>
-         <x>60</x>
-         <y>690</y>
+         <x>40</x>
+         <y>710</y>
          <width>491</width>
          <height>41</height>
         </rect>
@@ -695,6 +785,32 @@ background-color: rgb(50, 121, 234);
        </property>
        <property name="text">
         <string/>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="email_line">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>660</y>
+         <width>511</width>
+         <height>41</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_10">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>620</y>
+         <width>91</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+       </property>
+       <property name="text">
+        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Email&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
        </property>
       </widget>
      </widget>

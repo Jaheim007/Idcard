@@ -1,12 +1,14 @@
+from email import message
+from fileinput import filename
+from turtle import title
 from PyQt5 import QtWidgets
 from PyQt5.QtCore import *
 from PyQt5 import QtCore
 from PyQt5.QtWidgets import QMainWindow, QApplication, QFileDialog, QTableWidgetItem, QAbstractItemView, QMessageBox
 from Widget.id import Ui_Idcard
-import pyautogui
 import sqlite3
-import mss
-import mss.tools
+import smtplib
+from email.mime.text import MIMEText
 from PyQt5.QtGui import QPixmap
 
 class AccountPage_ID(QMainWindow, Ui_Idcard):
@@ -18,7 +20,9 @@ class AccountPage_ID(QMainWindow, Ui_Idcard):
         self.search_btn.clicked.connect(self.serachresults)
         self.register_btn.clicked.connect(self.tablereults)
         self.back_btn.clicked.connect(self.back)
-        self.capture.clicked.connect(self.image)
+        self.capture.clicked.connect(self.myscreenshot)
+        self.take_screen.clicked.connect(self.take_to_next)
+        self.back_btn_2.clicked.connect(self.back2)
         
 
     def openfile(self):
@@ -27,6 +31,13 @@ class AccountPage_ID(QMainWindow, Ui_Idcard):
         pixmap = QPixmap(img)
         self.add_photo.setPixmap(QPixmap(pixmap))
         self.add_photo.setScaledContents(True)
+    
+    def cover(self):
+        with open(filename, 'rd') as file:        
+            photo_image = file.read()
+        return photo_image
+        
+    
 
     def tablereults(self):
         db = sqlite3.connect("userdata.db")
@@ -36,12 +47,12 @@ class AccountPage_ID(QMainWindow, Ui_Idcard):
             "Nom": self.nom_line.text(),
             "Sexe": self.comboBox.currentText(),
             "Date":self.dateEdit_combo.text(),
-            "img": self.add_photo.text()
+            "img": self.add_photo.text(), 
+            "email": self.email_line.text()
         }
-        if self.prenom_line.text() == "" or self.nom_line.text() == "":
+        if self.prenom_line.text() == "" or self.nom_line.text() == "" or self.email_line.text() == "":
             QMessageBox.warning(self, "Error", "Veuillez saisir vos infomations")
-           
-
+        
         else:
 
             cur = db.cursor()
@@ -50,7 +61,7 @@ class AccountPage_ID(QMainWindow, Ui_Idcard):
                         Nom text, 
                         Sexe text, 
                         Date text, 
-                        img text
+                        img BLOB
                     )""")
 
         
@@ -58,6 +69,23 @@ class AccountPage_ID(QMainWindow, Ui_Idcard):
             
             db.commit()
             db.close()
+            
+            title = "Carte D'identité"
+            msg_content = "<h2><font color = ""green"">Votre Carte D'identité a été validée avec succès pour plus d'informations appelez le +225 01 43 50 48 13 </font></h2>\n".format(title = title)
+            message = MIMEText(msg_content, 'html')
+            message['From'] = 'Jaheim Kouaho <jaheimkouaho@gmail.com>'
+            # message['To'] = 'self.prenom_line.text() <self.email_line>'
+            message['Subject'] = "Carte D'identité"
+            msg_full = message.as_string()
+            
+            
+            sever = smtplib.SMTP('smtp.gmail.com:587')
+            sever.starttls()
+            sever.login('jaheimkouaho@gmail.com', 'kwlwqgiycesfgukn')
+            sever.sendmail('jaheimkouaho@gmail.com', [self.email_line.text()], msg_full,)
+            sever.quit()
+            
+            
 
             self.stackedWidget.setCurrentWidget(self.page)
             self.show()
@@ -94,20 +122,33 @@ class AccountPage_ID(QMainWindow, Ui_Idcard):
             self.table.insertRow(row_number)
             for column_number, data in enumerate(row_data):
                 self.table.setItem(row_number, column_number, QTableWidgetItem(str(data)))
-
-    def image(self):
+    
+    def take_to_next(self):    
+        self.stackedWidget.setCurrentWidget(self.page_3)
         
-        with mss.mss() as sct:
-            # The screen part to capture
-            monitor = {"top": 160, "left": 160, "width": 160, "height": 135}
-            output = "sct-{top}x{left}_{width}x{height}.png".format(**monitor)
+        self.show()
+        
+    def back2(self): 
+        self.stackedWidget.setCurrentWidget(self.page)
+        self.show()   
+        
+    
+        
 
-            # Grab the data
-            sct_img = sct.grab(monitor)
+    # def image(self):
+        
+    #     with mss.mss() as sct:
+    #         # The screen part to capture
+    #         monitor = {"top": 160, "left": 160, "width": 160, "height": 135}
+    #         output = "sct-{top}x{left}_{width}x{height}.png".format(**monitor)
 
-            # Save to the picture file
-            mss.tools.to_png(sct_img.rgb, sct_img.size, output=output)
-            print(output)
+    #         # Grab the data
+    #         sct_img = sct.grab(monitor)
+
+    #         # Save to the picture file
+    #         mss.tools.to_png(sct_img.rgb, sct_img.size, output=output)
+    #         print(output)
+    
     
 
 
@@ -117,6 +158,6 @@ class AccountPage_ID(QMainWindow, Ui_Idcard):
     
 
 
-    # def myscreenshot(self):
-    #     myScreenshot = pyautogui.screenshot()
-    #     myScreenshot.save(r'C:\Users\jahei\OneDrive\Bureau\ID\Static\screenshot.png')
+    def myscreenshot(self):
+        myScreenshot = pyautogui.screenshot()
+        myScreenshot.save(r'C:\Users\jahei\OneDrive\Bureau\ID\Static\screenshot.png')
